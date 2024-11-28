@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class FAQ extends Model
@@ -17,7 +18,7 @@ class FAQ extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = (string) \Illuminate\Support\Str::uuid();
+            $model->id = (string) Str::uuid();
         });
     }
 }

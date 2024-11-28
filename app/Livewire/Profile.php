@@ -36,24 +36,30 @@ class Profile extends Component
 
     public function updatePassword()
     {
-        // Validate the password inputs
         $this->validate([
             'old_password' => 'required|string',
             'new_password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Verify the old password
         if (!Hash::check($this->old_password, Auth::user()->password)) {
             $this->addError('old_password', 'The provided password does not match your current password.');
             return;
         }
 
-        // Update the password
         $user = Auth::user();
         $user->password = Hash::make($this->new_password);
         $user->save();
 
         session()->flash('message', 'Password updated successfully.');
+
+        $this->resetForm();
+    }
+
+    public function resetForm()
+    {
+        $this->old_password = '';
+        $this->new_password = '';
+        $this->new_password_confirmation = '';
     }
 
     public function render()
