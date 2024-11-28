@@ -1,8 +1,6 @@
 <div>
     <h1>Manage FAQs</h1>
 
-    <input type="text" wire:model.debounce.500ms="search" placeholder="Search FAQs" />
-
     <form wire:submit.prevent="save">
         <input type="hidden" wire:model="faqId">
         <label>Questions</label>
@@ -49,7 +47,4 @@
             @endforeach
         </tbody>
     </table>
-
-    {{ $faqs->links() }}
 </div>
-

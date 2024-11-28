@@ -2,6 +2,7 @@
 
 use App\Livewire\Faqs;
 use App\Livewire\Login;
+use App\Livewire\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard'); 
     })->name('dashboard');
+
+    Route::get('/profile', Profile::class)
+    ->name('profile');
+
     
 });
