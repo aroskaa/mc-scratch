@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FAQ extends Model
 {
-    use HasFactory;
 
     protected $table = 'faqs';
     public $incrementing = false;
@@ -19,7 +18,7 @@ class FAQ extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = (string) \Illuminate\Support\Str::uuid();
+            $model->id = (string) Str::uuid();
         });
     }
 }

@@ -4,18 +4,17 @@ namespace App\Livewire;
 
 use App\Models\FAQ;
 use Livewire\Component;
-use Livewire\WithPagination;
-use Illuminate\Support\Facades\Cache;
 
 class Faqs extends Component
 {
-    use WithPagination;
 
-    public $questions, $answers, $status = true, $faqId;
-    public $search = '';
+    public $questions, 
+            $answers, 
+            $status = true, 
+            $faqId;
 
-    protected $queryString = ['search', 'page'];
-
+    protected $queryString = ['page'];
+    
     protected $rules = [
         'questions' => 'required|string|max:255',
         'answers' => 'required|string',
@@ -24,9 +23,7 @@ class Faqs extends Component
 
     public function render()
     {
-        $faqs = FAQ::where('questions', 'like', '%' . $this->search . '%')
-            ->paginate(10);
-
+        $faqs = FAQ::paginate(10); // Fetch FAQs without search filtering
         return view('livewire.faqs', compact('faqs'));
     }
 
