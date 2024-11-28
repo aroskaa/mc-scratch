@@ -3,3 +3,7 @@
     @csrf
     <button type="submit">Logout</button>
 </form>
+
+<a href="{{ route('profile') }}">
+    <button>Go to Profile</button>
+</a>
